@@ -371,9 +371,12 @@ dialog::backdrop{ background:rgba(4,8,14,.65); backdrop-filter:blur(3px) }
   body{ padding-bottom: calc(66px + env(safe-area-inset-bottom)) }
 
   /* --- Barre du haut --- */
-  /* Fond solide (le backdrop-filter créerait un containing block qui piegerait
-     la navigation fixée en bas ; l'opacité évite le texte fantôme en dessous) */
-  .topbar{ padding:10px 14px; gap:10px; background:#0a0e15 }
+  /* Fond solide + backdrop-filter DESACTIVE : le flou de la règle desktop crée
+     un containing block qui piègerait la nav position:fixed du bas de l'écran */
+  .topbar{
+    padding:10px 14px; gap:10px; background:#0a0e15;
+    -webkit-backdrop-filter:none; backdrop-filter:none;
+  }
   .brand{ font-size:17px }
 
   /* --- Navigation fixée en bas de l'écran --- */
